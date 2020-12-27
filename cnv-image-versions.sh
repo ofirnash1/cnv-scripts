@@ -10,13 +10,13 @@ echo "Select from which resource:"
 select res_opt in "${resource_options[@]}"
 do
 	echo "Selected option: ${yellow}$res_opt${reset}."
-
+	
+	# Get all image options from the selected resource choice
 	cnv_res="oc get ${res_opt}"
 	cnv_res_filter="-n openshift-cnv | awk ' { print \$1 } ' | tail -n +2"
-
 	cnv_image_choices="${cnv_res} ${cnv_res_filter}"
+	
 	cnv_image_choices=`eval "$cnv_image_choices"`
-
 	choices_array=( $cnv_image_choices )
 
 	# Second Menu - Which image in the resource
